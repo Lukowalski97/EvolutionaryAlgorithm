@@ -2,8 +2,9 @@ package model.problem;
 
 import java.util.Collection;
 
-public class Chromosome <T>{
-    Collection <T> genes;
+public abstract class Chromosome implements Comparable{
+    long chromosomeValue;
+    Collection<Gene> genes;
 
     @Override
     public String toString() {
@@ -12,11 +13,11 @@ public class Chromosome <T>{
                 '}';
     }
 
-    public Collection<T> getGenes() {
+    public Collection<Gene> getGenes() {
         return genes;
     }
 
-    public void setGenes(Collection<T> genes) {
+    public void setGenes(Collection<Gene> genes) {
         this.genes = genes;
     }
 }

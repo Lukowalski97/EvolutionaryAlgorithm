@@ -2,7 +2,7 @@ package framework;
 
 public class GenerationsCountStopStrategy implements IStopStrategy {
 
-    public boolean isAlogrithmWorking() {
+    public boolean isAlgorithmWorking() {
         return false;
     }
 

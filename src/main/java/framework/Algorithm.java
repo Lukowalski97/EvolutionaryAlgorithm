@@ -6,6 +6,7 @@ import model.initializer.IInitStrategy;
 import model.mutator.IMutateStrategy;
 import model.problem.Chromosome;
 import model.problem.IProblem;
+import model.selector.ISelectStrategy;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class Algorithm {
     IInitStrategy initStrategy;
     IMutateStrategy mutateStrategy;
     IEvalStrategy evalStrategy;
+    ISelectStrategy selectStrategy;
 
 
 
@@ -28,7 +30,7 @@ public class Algorithm {
         this.initStrategy= algorithmBuilder.initStrategy;
         this.mutateStrategy=algorithmBuilder.mutateStrategy;
         this.evalStrategy=algorithmBuilder.evalStrategy;
-        ISelectStrategy selectStrategy;
+        this.selectStrategy =algorithmBuilder.selectStrategy;
 
     }
 
@@ -90,7 +92,7 @@ public class Algorithm {
             //ewaluacja
             this.evalStrategy.evaluateChromosomes(chromosomes);
 
-            if(!this.stopStrategy.isAlogrithmWorking()){
+            if(!this.stopStrategy.isAlgorithmWorking()){
                 break;
             }
 

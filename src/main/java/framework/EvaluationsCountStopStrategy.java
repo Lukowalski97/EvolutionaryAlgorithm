@@ -1,7 +1,7 @@
 package framework;
 
 public class EvaluationsCountStopStrategy implements IStopStrategy{
-    public boolean isAlogrithmWorking() {
+    public boolean isAlgorithmWorking() {
         return false;
     }
 

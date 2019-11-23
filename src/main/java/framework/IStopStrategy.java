@@ -2,7 +2,7 @@ package framework;
 
 public interface IStopStrategy {
 
-    boolean isAlogrithmWorking();
+    boolean isAlgorithmWorking();
 
 
 
