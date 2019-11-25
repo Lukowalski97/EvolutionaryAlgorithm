@@ -8,13 +8,13 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(System.getProperty("java.io.tmpdir"));
-        System.setProperty("java.io.tmpdir", "C:\\Temp\\");
-        System.out.println(System.getProperty("java.io.tmpdir"));
-
         IStopStrategy stopStrategy = new GenerationsCountStopStrategy();
 
         IProblem problem = new IProblem() {
+            public void setChromosomes(List<Chromosome> chromosomes) {
+
+            }
+
             public List<Chromosome> getChromosomes() {
                 return null;
             }

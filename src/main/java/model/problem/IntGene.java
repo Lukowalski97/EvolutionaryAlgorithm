@@ -12,6 +12,10 @@ public class IntGene extends Gene {
         this.value = value;
     }
 
+    public IntGene(int value) {
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return "IntGene{" +

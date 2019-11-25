@@ -112,10 +112,5 @@ public class Algorithm {
 
             setProblemChromosomes(mutateStrategy.mutateChromosomes(getProblemChromosomes()));
         }
-
-
-
     }
-
-
 }

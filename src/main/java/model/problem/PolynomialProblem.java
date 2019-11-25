@@ -14,6 +14,10 @@ public class PolynomialProblem implements IProblem {
 
     }
 
+    public void setChromosomes(List<Chromosome> chromosomes) {
+
+    }
+
     public List<Chromosome> getChromosomes() {
         return null;
     }

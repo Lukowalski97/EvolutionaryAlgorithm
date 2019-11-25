@@ -11,7 +11,6 @@ import java.util.List;
 public class IntInitStrategy implements IInitStrategy {
 
     public List<Chromosome> initChromosomes(int  chromosomesAmount, int chromosomeSize) {
-
         return null;
     }
 
