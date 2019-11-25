@@ -79,32 +79,38 @@ public class Algorithm {
         }
     }
 
-    public void run(){
+    public List<Chromosome> getProblemChromosomes(){
+        return this.problem.getChromosomes();
+    }
 
-        List<Chromosome> chromosomes = this.problem.getChromosomes();
+    public void setProblemChromosomes(List<Chromosome> chromosomes){
+        this.problem.setChromosomes(chromosomes);
+    }
+
+    public void run(){
         //initialize
-        chromosomes.addAll(this.initStrategy.initChromosomes());
+        setProblemChromosomes(this.initStrategy.initChromosomes(10,10));
 
         while(true){
             //posortuj wg
             //this.problem.getChromosomes().sort();
 
             //ewaluacja
-            this.evalStrategy.evaluateChromosomes(chromosomes);
+            setProblemChromosomes(this.evalStrategy.evaluateChromosomes(getProblemChromosomes()));
 
             if(!this.stopStrategy.isAlgorithmWorking()){
                 break;
             }
 
             //selekcja
-            this.selectStrategy.selectPersistentChromosomes(chromosomes);
+            setProblemChromosomes(selectStrategy.selectPersistentChromosomes(getProblemChromosomes()));
 
             //krzyzowanie
-            this.crossStrategy.crossChromosomes(chromosomes);
+            setProblemChromosomes(crossStrategy.crossChromosomes(getProblemChromosomes()));
 
             //mutacja
 
-            this.mutateStrategy.mutateChromosomes(chromosomes);
+            setProblemChromosomes(mutateStrategy.mutateChromosomes(getProblemChromosomes()));
         }
 
 
