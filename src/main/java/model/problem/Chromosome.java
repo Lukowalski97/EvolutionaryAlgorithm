@@ -2,9 +2,16 @@ package model.problem;
 
 import java.util.Collection;
 
-public abstract class Chromosome implements Comparable{
-    long chromosomeValue;
+public abstract class Chromosome implements Comparable<Chromosome>{
+    int chromosomeFitnessValue;
+
     Collection<Gene> genes;
+
+
+    public int compareTo(Chromosome chr){
+        return this.chromosomeFitnessValue - chr.chromosomeFitnessValue;
+    }
+
 
     @Override
     public String toString() {
@@ -20,4 +27,6 @@ public abstract class Chromosome implements Comparable{
     public void setGenes(Collection<Gene> genes) {
         this.genes = genes;
     }
+
+
 }

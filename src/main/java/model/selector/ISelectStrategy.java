@@ -5,5 +5,6 @@ import model.problem.Chromosome;
 import java.util.List;
 
 public interface ISelectStrategy {
-    void selectPersistentChromosomes(List<Chromosome> chromosomes);
+
+    List<Chromosome> selectPersistentChromosomes(List<Chromosome> chromosomes);
 }

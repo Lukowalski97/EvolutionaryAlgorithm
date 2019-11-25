@@ -5,8 +5,12 @@ import model.evaluator.IEvalStrategy;
 import model.initializer.IInitStrategy;
 import model.mutator.IMutateStrategy;
 import model.problem.IProblem;
+import model.problem.PolynomialProblem;
 
-public interface IProblemFactory
-{
-    IProblem createProblem();
+public class PolynomialProblemFactory implements IProblemFactory {
+
+
+    public IProblem createProblem() {
+        return new PolynomialProblem(new int[]{1,2,3});
+    }
 }
