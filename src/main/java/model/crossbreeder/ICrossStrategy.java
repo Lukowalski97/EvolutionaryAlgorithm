@@ -5,5 +5,5 @@ import model.problem.Chromosome;
 import java.util.List;
 
 public interface ICrossStrategy {
-    void crossChromosomes(List <Chromosome> chromosomes);
+    List<Chromosome> crossChromosomes(List <Chromosome> chromosomes);
 }
