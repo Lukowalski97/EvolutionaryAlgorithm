@@ -54,24 +54,29 @@ public class Algorithm {
             return this;
         }
 
-        public AlgorithmBuilder(ICrossStrategy crossStrategy){
+        public AlgorithmBuilder crossStrategy(ICrossStrategy crossStrategy){
             this.crossStrategy=crossStrategy;
+            return this;
         }
 
-        public AlgorithmBuilder(IInitStrategy initStrategy){
+        public AlgorithmBuilder initStrategy(IInitStrategy initStrategy){
             this.initStrategy=initStrategy;
+            return this;
         }
 
-        public AlgorithmBuilder(IMutateStrategy mutateStrategy){
+        public AlgorithmBuilder mutateStrategy(IMutateStrategy mutateStrategy){
             this.mutateStrategy=mutateStrategy;
+            return this;
         }
 
-        public AlgorithmBuilder(IEvalStrategy evalStrategy){
+        public AlgorithmBuilder evalStrategy(IEvalStrategy evalStrategy){
             this.evalStrategy=evalStrategy;
+            return this;
         }
 
-        public AlgorithmBuilder(ISelectStrategy selectStrategy){
+        public AlgorithmBuilder selectStrategy(ISelectStrategy selectStrategy){
             this.selectStrategy=selectStrategy;
+            return this;
         }
 
         public Algorithm build(){
@@ -85,6 +90,38 @@ public class Algorithm {
 
     public void setProblemChromosomes(List<Chromosome> chromosomes){
         this.problem.setChromosomes(chromosomes);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public IStopStrategy getStopStrategy() {
+        return stopStrategy;
+    }
+
+    public IProblem getProblem() {
+        return problem;
+    }
+
+    public ICrossStrategy getCrossStrategy() {
+        return crossStrategy;
+    }
+
+    public IInitStrategy getInitStrategy() {
+        return initStrategy;
+    }
+
+    public IMutateStrategy getMutateStrategy() {
+        return mutateStrategy;
+    }
+
+    public IEvalStrategy getEvalStrategy() {
+        return evalStrategy;
+    }
+
+    public ISelectStrategy getSelectStrategy() {
+        return selectStrategy;
     }
 
     public void run(){
