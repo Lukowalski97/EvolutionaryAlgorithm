@@ -16,8 +16,8 @@ import static org.junit.Assert.*;
 public class IntCrossStrategyTest {
     IntCrossStrategy cross = new IntCrossStrategy();
     List<Chromosome> list;
-    Collection<Gene> genes1;
-    Collection<Gene> genes2;
+    List<Gene> genes1;
+    List<Gene> genes2;
 
     @Before
     public void init() {

@@ -1,11 +1,12 @@
 package model.problem;
 
 import java.util.Collection;
+import java.util.List;
 
 public abstract class Chromosome implements Comparable<Chromosome>{
     int chromosomeFitnessValue;
 
-    Collection<Gene> genes;
+    private List<Gene> genes;
 
 
     public int compareTo(Chromosome chr){
@@ -20,11 +21,11 @@ public abstract class Chromosome implements Comparable<Chromosome>{
                 '}';
     }
 
-    public Collection<Gene> getGenes() {
+    public List<Gene> getGenes() {
         return genes;
     }
 
-    public void setGenes(Collection<Gene> genes) {
+    public void setGenes(List<Gene> genes) {
         this.genes = genes;
     }
 

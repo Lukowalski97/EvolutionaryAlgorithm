@@ -5,21 +5,18 @@ import java.util.List;
 public class PolynomialProblem implements IProblem {
 
     int[] polynomial;
+    List<Chromosome> chromosomes;
 
     public PolynomialProblem(int[] polynomial){
         this.polynomial=polynomial;
     }
 
-    public void setChromosomes() {
-
+    public List<Chromosome> getChromosomes() {
+        return chromosomes;
     }
 
     public void setChromosomes(List<Chromosome> chromosomes) {
-
-    }
-
-    public List<Chromosome> getChromosomes() {
-        return null;
+        this.chromosomes = chromosomes;
     }
 
     public void setPolynomial(int[] polynomial) {
