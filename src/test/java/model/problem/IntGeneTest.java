@@ -6,11 +6,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class IntGeneTest {
-    IntGene gene;
+    FloatGene gene;
 
     @Before
     public void init(){
-        gene = new IntGene(5);
+        gene = new FloatGene(5);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class IntGeneTest {
 
     @Test
     public void testToString() {
-        assertEquals(gene.toString(), "IntGene{" +
+        assertEquals(gene.toString(), "FloatGene{" +
                 "value=" + 5 +
                 '}');
     }

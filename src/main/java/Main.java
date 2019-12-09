@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        IStopStrategy stopStrategy = new GenerationsCountStopStrategy();
+        IStopStrategy stopStrategy = new GenerationsCountStopStrategy(100);
 
         IProblem problem = new IProblem() {
             public void setChromosomes(List<Chromosome> chromosomes) {

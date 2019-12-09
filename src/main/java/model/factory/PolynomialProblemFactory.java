@@ -11,6 +11,6 @@ public class PolynomialProblemFactory implements IProblemFactory {
 
 
     public IProblem createProblem() {
-        return new PolynomialProblem(new int[]{1,2,3});
+        return new PolynomialProblem(new float[]{1,2,3});
     }
 }

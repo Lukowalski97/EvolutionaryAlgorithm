@@ -1,9 +1,8 @@
 package framework;
 
-import model.crossbreeder.IntCrossStrategy;
-import model.initializer.IInitStrategy;
-import model.initializer.IntInitStrategy;
-import model.mutator.IntMutateStrategy;
+import model.crossbreeder.FloatCrossStrategy;
+import model.initializer.FloatInitStrategy;
+import model.mutator.FloatMutateStrategy;
 import model.problem.Chromosome;
 import model.problem.IProblem;
 import org.junit.Before;
@@ -31,9 +30,9 @@ public class AlgorithmTest {
         };
 
         algorithm = new Algorithm.AlgorithmBuilder(stopStrategy, problem)
-                .initStrategy(new IntInitStrategy())
-                .crossStrategy(new IntCrossStrategy())
-                .mutateStrategy(new IntMutateStrategy())
+                .initStrategy(new FloatInitStrategy())
+                .crossStrategy(new FloatCrossStrategy())
+                .mutateStrategy(new FloatMutateStrategy())
                 .name("Int").build();
 
     }

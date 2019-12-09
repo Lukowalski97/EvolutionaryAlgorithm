@@ -10,7 +10,7 @@ public class IntInitStrategyTest {
 
     @Before
     public void init() {
-        init = new IntInitStrategy();
+        init = new FloatInitStrategy();
     }
 
 

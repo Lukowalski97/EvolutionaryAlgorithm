@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface IMutateStrategy {
     List<Chromosome> mutateChromosomes(List<Chromosome> chromosomes);
+
+    public float getMutationChance();
+    public void setMutationChance(float mutationChance);
 }

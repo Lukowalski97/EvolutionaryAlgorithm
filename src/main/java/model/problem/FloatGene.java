@@ -1,25 +1,28 @@
 package model.problem;
 
-public class IntGene extends Gene {
+public class FloatGene extends Gene {
 
-    private int value;
+    private float value;
 
-    public int getValue() {
+    public float getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(float value) {
         this.value = value;
     }
 
-    public IntGene(int value) {
+    public FloatGene(float value) {
         this.value = value;
     }
 
     @Override
     public String toString() {
-        return "IntGene{" +
+        return "FloatGene{" +
                 "value=" + value +
                 '}';
+
     }
+
+
 }

@@ -1,16 +1,27 @@
 package model.problem;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public abstract class Chromosome implements Comparable<Chromosome>{
-    int chromosomeFitnessValue;
 
-    private List<Gene> genes;
+
+    private float chromosomeFitnessValue;
+
+     List<Gene> genes;
 
 
     public int compareTo(Chromosome chr){
-        return this.chromosomeFitnessValue - chr.chromosomeFitnessValue;
+        return (int)this.chromosomeFitnessValue - (int)chr.chromosomeFitnessValue;
+    }
+
+    public Chromosome(){
+        this.genes = new ArrayList<Gene>();
+    }
+
+    public Chromosome(List<Gene> genes){
+        this.genes=genes;
     }
 
 
@@ -27,6 +38,14 @@ public abstract class Chromosome implements Comparable<Chromosome>{
 
     public void setGenes(List<Gene> genes) {
         this.genes = genes;
+    }
+
+    public float getChromosomeFitnessValue() {
+        return chromosomeFitnessValue;
+    }
+
+    public void setChromosomeFitnessValue(float chromosomeFitnessValue) {
+        this.chromosomeFitnessValue = chromosomeFitnessValue;
     }
 
 
