@@ -4,7 +4,15 @@ public class TimeElapsedStopStrategy implements IStopStrategy {
 
     private long algorithmEndTime;
 
-   public TimeElapsedStopStrategy(long algorithmTime){
+    public long getAlgorithmEndTime() {
+        return algorithmEndTime;
+    }
+
+    public void setAlgorithmEndTime(long algorithmEndTime) {
+        this.algorithmEndTime = algorithmEndTime;
+    }
+
+    public TimeElapsedStopStrategy(long algorithmTime){
        this.algorithmEndTime=algorithmTime + System.currentTimeMillis();
    }
 
