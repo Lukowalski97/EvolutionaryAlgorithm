@@ -126,7 +126,7 @@ public class Algorithm {
 
     public void run(){
         //initialize
-        setProblemChromosomes(this.initStrategy.initChromosomes(10,10));
+        setProblemChromosomes(this.initStrategy.initChromosomes(10,1));
 
         while(true){
             //posortuj wg

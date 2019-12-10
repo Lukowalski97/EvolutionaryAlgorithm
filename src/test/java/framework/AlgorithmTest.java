@@ -1,10 +1,13 @@
 package framework;
 
 import model.crossbreeder.FloatCrossStrategy;
+import model.evaluator.PolynomialEvalStrategy;
 import model.initializer.FloatInitStrategy;
 import model.mutator.FloatMutateStrategy;
 import model.problem.Chromosome;
 import model.problem.IProblem;
+import model.problem.PolynomialProblem;
+import model.selector.SelectTopNStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,26 +17,22 @@ import static org.junit.Assert.*;
 
 public class AlgorithmTest {
     Algorithm algorithm;
-    IStopStrategy stopStrategy = new GenerationsCountStopStrategy();
-    IProblem problem;
+    IStopStrategy stopStrategy = new GenerationsCountStopStrategy(2);
+    PolynomialProblem problem;
+    float[] polynomial = new float[]{1,2,3};
 
     @Before
     public void init() {
-        problem = new IProblem() {
-            public void setChromosomes(List<Chromosome> chromosomes) {
+        problem = new PolynomialProblem(polynomial);
 
-            }
-
-            public List<Chromosome> getChromosomes() {
-                return null;
-            }
-        };
 
         algorithm = new Algorithm.AlgorithmBuilder(stopStrategy, problem)
                 .initStrategy(new FloatInitStrategy())
-                .crossStrategy(new FloatCrossStrategy())
-                .mutateStrategy(new FloatMutateStrategy())
-                .name("Int").build();
+                .crossStrategy(new FloatCrossStrategy(2))
+                .mutateStrategy(new FloatMutateStrategy(1, 1))
+                .evalStrategy(new PolynomialEvalStrategy(problem))
+                .selectStrategy(new SelectTopNStrategy(2))
+                .name("Polynomial").build();
 
     }
 
@@ -43,15 +42,17 @@ public class AlgorithmTest {
 
     @Test
     public void getName() {
-        assertEquals(algorithm.getName(), "Int");
+        assertEquals(algorithm.getName(), "Polynomial");
     }
 
     @Test
     public void getStopStrategy() {
+        assertNotNull(algorithm.getStopStrategy());
     }
 
     @Test
     public void getProblem() {
+        assertNotNull(algorithm.getProblem());
     }
 
     @Test
@@ -71,9 +72,16 @@ public class AlgorithmTest {
 
     @Test
     public void getEvalStrategy() {
+        assertNotNull(algorithm.getEvalStrategy());
     }
 
     @Test
     public void getSelectStrategy() {
+        assertNotNull(algorithm.getSelectStrategy());
+    }
+
+    @Test
+    public void run() {
+        algorithm.run();
     }
 }

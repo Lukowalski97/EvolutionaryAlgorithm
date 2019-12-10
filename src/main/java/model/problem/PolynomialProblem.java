@@ -48,4 +48,5 @@ public class PolynomialProblem implements IProblem {
     public float[]  getPolynomial(){
         return this.polynomial;
     }
+
 }

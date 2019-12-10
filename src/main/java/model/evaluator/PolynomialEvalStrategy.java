@@ -12,7 +12,7 @@ public class PolynomialEvalStrategy implements IEvalStrategy {
 
     PolynomialProblem problem;
 
-    PolynomialEvalStrategy(PolynomialProblem problem) {
+    public PolynomialEvalStrategy(PolynomialProblem problem) {
         this.problem = problem;
     }
 

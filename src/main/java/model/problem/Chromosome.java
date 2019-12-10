@@ -20,11 +20,6 @@ public abstract class Chromosome implements Comparable<Chromosome>{
         this.genes = new ArrayList<Gene>();
     }
 
-    public Chromosome(List<Gene> genes){
-        this.genes=genes;
-    }
-
-
     @Override
     public String toString() {
         return "Chromosome{" +

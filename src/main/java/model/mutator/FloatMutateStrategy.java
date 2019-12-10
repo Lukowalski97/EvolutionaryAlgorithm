@@ -13,7 +13,7 @@ public class FloatMutateStrategy implements IMutateStrategy {
     private float mutationMaxDelta;
     private Random random;
 
-    FloatMutateStrategy(float mutationChance, float mutationMaxDelta) {
+    public FloatMutateStrategy(float mutationChance, float mutationMaxDelta) {
         this.mutationChance = mutationChance;
         this.mutationMaxDelta = mutationMaxDelta;
         this.random = new Random();

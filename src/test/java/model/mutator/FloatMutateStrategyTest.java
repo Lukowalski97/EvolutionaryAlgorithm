@@ -1,18 +1,19 @@
-package model.crossbreeder;
+package model.mutator;
 
 import model.problem.Chromosome;
+import model.problem.FloatGene;
 import model.problem.Gene;
 import model.problem.FloatChromosome;
-import model.problem.FloatGene;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class IntCrossStrategyTest {
-    FloatCrossStrategy cross = new FloatCrossStrategy();
+public class FloatMutateStrategyTest {
+    FloatMutateStrategy mutator = new FloatMutateStrategy(1, 0);
     List<Chromosome> list;
     List<Gene> genes1;
     List<Gene> genes2;
@@ -27,10 +28,8 @@ public class IntCrossStrategyTest {
         genes2 = new ArrayList<Gene>();
         genes2.add(gene2);
 
-        FloatChromosome chromosome1 = new FloatChromosome();
-        chromosome1.setGenes(genes1);
-        FloatChromosome chromosome2 = new FloatChromosome();
-        chromosome1.setGenes(genes2);
+        FloatChromosome chromosome1 = new FloatChromosome(genes1);
+        FloatChromosome chromosome2 = new FloatChromosome(genes2);
 
         list = new ArrayList<Chromosome>();
         list.add(chromosome1);
@@ -38,8 +37,11 @@ public class IntCrossStrategyTest {
     }
 
     @Test
-    public void crossChromosomes() {
-        assertEquals(cross.crossChromosomes(list).size(), 3);
-        assertTrue(cross.crossChromosomes(list).contains(3));
+    public void mutateChromosomes() {
+        List<Chromosome> result = mutator.mutateChromosomes(list);
+        mutator.setMutationChance(0.5f);
+
+        assertEquals(list.size() , result.size());
+        assertEquals(mutator.getMutationChance(), 0.5, 0.1);
     }
 }
