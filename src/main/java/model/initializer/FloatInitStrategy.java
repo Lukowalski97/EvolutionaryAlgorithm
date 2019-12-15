@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class FloatInitStrategy implements IInitStrategy {
+public class FloatInitStrategy implements IInitStrategy<FloatGene> {
 
     private float minChromValue=-10;
     private float maxChromValue=10;
     private Random rand = new Random();
 
-    public List<Chromosome> initChromosomes(int  chromosomesAmount, int chromosomeSize) {
-         List<Chromosome> outp = new ArrayList<Chromosome>();
+    public List<Chromosome<FloatGene>> initChromosomes(int  chromosomesAmount, int chromosomeSize) {
+         List<Chromosome<FloatGene>> outp = new ArrayList<>();
 
          for(int i=0;i<chromosomesAmount;i++){
              outp.add(new FloatChromosome(initGenes(chromosomeSize)));
@@ -22,7 +22,7 @@ public class FloatInitStrategy implements IInitStrategy {
          return outp;
     }
 
-    public List<Chromosome> initChromosomes(int  chromosomesAmount, int chromosomeSize, float minChromValue, float maxChromValue) {
+    public List<Chromosome<FloatGene>> initChromosomes(int  chromosomesAmount, int chromosomeSize, float minChromValue, float maxChromValue) {
         this.maxChromValue=maxChromValue;
         this.minChromValue=minChromValue;
 
@@ -35,9 +35,9 @@ public class FloatInitStrategy implements IInitStrategy {
     }
 
 
-    public List<Gene> initGenes(int genesAmount) {
+    public List<FloatGene> initGenes(int genesAmount) {
 
-        List<Gene> outp = new ArrayList<Gene>();
+        List<FloatGene> outp = new ArrayList<>();
 
         for(int i=0;i<genesAmount;i++){
             outp.add(new FloatGene(generateNewFloatValue()));

@@ -1,5 +1,6 @@
 package framework;
 
+import framework.stopstrategy.TopValueConstStopStrategy;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

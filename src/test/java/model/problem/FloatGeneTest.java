@@ -26,6 +26,18 @@ public class FloatGeneTest {
 
     @Test
     public void testToString() {
-        assertEquals(gene.toString(), "FloatGene{value=5.0}");
+        assertEquals("(" +gene.getValue()+ ")",gene.toString() );
+    }
+
+    public void testHashAndEquals(){
+        FloatGene gene1 = new FloatGene(1);
+        FloatGene gene2 = new FloatGene(1);
+        FloatGene geneDiff = new FloatGene(3);
+
+
+        assertEquals(gene1,gene2);
+        assertNotEquals(gene1,geneDiff);
+        assertEquals(gene1.hashCode(),gene2.hashCode());
+        assertNotEquals(gene1.hashCode(),geneDiff.hashCode());
     }
 }

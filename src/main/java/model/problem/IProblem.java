@@ -2,10 +2,10 @@ package model.problem;
 
 import java.util.List;
 
-public interface IProblem {
+public interface IProblem <T extends Gene> {
 
-    void setChromosomes(List<Chromosome> chromosomes);
-    List<Chromosome> getChromosomes();
+    void setChromosomes(List<Chromosome<T>> chromosomes);
+    List<Chromosome<T>> getChromosomes();
 
 
 }

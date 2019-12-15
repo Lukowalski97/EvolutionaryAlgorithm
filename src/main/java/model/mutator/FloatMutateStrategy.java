@@ -2,12 +2,11 @@ package model.mutator;
 
 import model.problem.Chromosome;
 import model.problem.FloatGene;
-import model.problem.Gene;
 
 import java.util.List;
 import java.util.Random;
 
-public class FloatMutateStrategy implements IMutateStrategy {
+public class FloatMutateStrategy implements IMutateStrategy<FloatGene> {
 
     private float mutationChance;
     private float mutationMaxDelta;
@@ -19,11 +18,11 @@ public class FloatMutateStrategy implements IMutateStrategy {
         this.random = new Random();
     }
 
-    public List<Chromosome> mutateChromosomes(List<Chromosome> chromosomes) {
-        for (Chromosome chromosome : chromosomes) {
+    public List<Chromosome<FloatGene>> mutateChromosomes(List<Chromosome<FloatGene>> chromosomes) {
+        for (Chromosome<FloatGene> chromosome : chromosomes) {
             if (random.nextFloat() <= getMutationChance()) {
-                for (Gene gene : chromosome.getGenes()) {
-                    ((FloatGene) gene).setValue(((FloatGene) gene).getValue() + getDelta());
+                for (FloatGene gene : chromosome.getGenes()) {
+                    gene.setValue(gene.getValue() + getDelta());
                 }
             }
         }

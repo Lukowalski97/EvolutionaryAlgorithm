@@ -2,10 +2,10 @@ package model.problem;
 
 import java.util.List;
 
-public class PolynomialProblem implements IProblem {
+public class PolynomialProblem implements IProblem<FloatGene> {
 
     private final  float[] polynomial;
-    private List<Chromosome> chromosomes;
+    private List<Chromosome<FloatGene>> chromosomes;
     private final float minX,maxX;
     private final boolean isSearchingForMax;
 
@@ -37,11 +37,11 @@ public class PolynomialProblem implements IProblem {
     }
 
 
-    public List<Chromosome> getChromosomes() {
+    public List<Chromosome<FloatGene>> getChromosomes() {
         return chromosomes;
     }
 
-    public void setChromosomes(List<Chromosome> chromosomes) {
+    public void setChromosomes(List<Chromosome<FloatGene>> chromosomes) {
         this.chromosomes = chromosomes;
     }
 

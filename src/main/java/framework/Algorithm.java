@@ -1,47 +1,48 @@
 package framework;
 
+import framework.stopstrategy.IStopStrategy;
 import model.crossbreeder.ICrossStrategy;
 import model.evaluator.IEvalStrategy;
 import model.initializer.IInitStrategy;
 import model.mutator.IMutateStrategy;
 import model.problem.Chromosome;
+import model.problem.Gene;
 import model.problem.IProblem;
 import model.selector.ISelectStrategy;
 
 import java.util.List;
 
 public class Algorithm {
-    IStopStrategy stopStrategy;
-    IProblem problem;
-    String name;
-    ICrossStrategy crossStrategy;
-    IInitStrategy initStrategy;
-    IMutateStrategy mutateStrategy;
-    IEvalStrategy evalStrategy;
-    ISelectStrategy selectStrategy;
-
+    private IStopStrategy stopStrategy;
+    private IProblem problem;
+    private String name;
+    private ICrossStrategy crossStrategy;
+    private IInitStrategy initStrategy;
+    private IMutateStrategy mutateStrategy;
+    private IEvalStrategy evalStrategy;
+    private ISelectStrategy selectStrategy;
 
 
     private Algorithm(AlgorithmBuilder algorithmBuilder) {
         this.stopStrategy = algorithmBuilder.stopStrategy;
         this.problem = algorithmBuilder.problem;
         this.name = algorithmBuilder.name;
-        this.crossStrategy= algorithmBuilder.crossStrategy;
-        this.initStrategy= algorithmBuilder.initStrategy;
-        this.mutateStrategy=algorithmBuilder.mutateStrategy;
-        this.evalStrategy=algorithmBuilder.evalStrategy;
-        this.selectStrategy =algorithmBuilder.selectStrategy;
+        this.crossStrategy = algorithmBuilder.crossStrategy;
+        this.initStrategy = algorithmBuilder.initStrategy;
+        this.mutateStrategy = algorithmBuilder.mutateStrategy;
+        this.evalStrategy = algorithmBuilder.evalStrategy;
+        this.selectStrategy = algorithmBuilder.selectStrategy;
 
     }
 
-    public static class AlgorithmBuilder{
+    public static class AlgorithmBuilder<T extends Gene> {
         IStopStrategy stopStrategy;
-        IProblem problem;
+        IProblem<T> problem;
         String name;
-        ICrossStrategy crossStrategy;
-        IInitStrategy initStrategy;
-        IMutateStrategy mutateStrategy;
-        IEvalStrategy evalStrategy;
+        ICrossStrategy<T> crossStrategy;
+        IInitStrategy<T> initStrategy;
+        IMutateStrategy<T> mutateStrategy;
+        IEvalStrategy<T> evalStrategy;
         ISelectStrategy selectStrategy;
 
         public AlgorithmBuilder(IStopStrategy stopStrategy, IProblem problem) {
@@ -49,46 +50,46 @@ public class Algorithm {
             this.problem = problem;
         }
 
-        public AlgorithmBuilder name(String name){
+        public AlgorithmBuilder name(String name) {
             this.name = name;
             return this;
         }
 
-        public AlgorithmBuilder crossStrategy(ICrossStrategy crossStrategy){
-            this.crossStrategy=crossStrategy;
+        public AlgorithmBuilder crossStrategy(ICrossStrategy crossStrategy) {
+            this.crossStrategy = crossStrategy;
             return this;
         }
 
-        public AlgorithmBuilder initStrategy(IInitStrategy initStrategy){
-            this.initStrategy=initStrategy;
+        public AlgorithmBuilder initStrategy(IInitStrategy initStrategy) {
+            this.initStrategy = initStrategy;
             return this;
         }
 
-        public AlgorithmBuilder mutateStrategy(IMutateStrategy mutateStrategy){
-            this.mutateStrategy=mutateStrategy;
+        public AlgorithmBuilder mutateStrategy(IMutateStrategy mutateStrategy) {
+            this.mutateStrategy = mutateStrategy;
             return this;
         }
 
-        public AlgorithmBuilder evalStrategy(IEvalStrategy evalStrategy){
-            this.evalStrategy=evalStrategy;
+        public AlgorithmBuilder evalStrategy(IEvalStrategy evalStrategy) {
+            this.evalStrategy = evalStrategy;
             return this;
         }
 
-        public AlgorithmBuilder selectStrategy(ISelectStrategy selectStrategy){
-            this.selectStrategy=selectStrategy;
+        public AlgorithmBuilder selectStrategy(ISelectStrategy selectStrategy) {
+            this.selectStrategy = selectStrategy;
             return this;
         }
 
-        public Algorithm build(){
+        public Algorithm build() {
             return new Algorithm(this);
         }
     }
 
-    public List<Chromosome> getProblemChromosomes(){
+    public List<Chromosome> getProblemChromosomes() {
         return this.problem.getChromosomes();
     }
 
-    public void setProblemChromosomes(List<Chromosome> chromosomes){
+    public void setProblemChromosomes(List<Chromosome> chromosomes) {
         this.problem.setChromosomes(chromosomes);
     }
 
@@ -124,18 +125,16 @@ public class Algorithm {
         return selectStrategy;
     }
 
-    public void run(){
+    public void run() {
         //initialize
-        setProblemChromosomes(this.initStrategy.initChromosomes(10,1));
+        setProblemChromosomes(this.initStrategy.initChromosomes(10, 1));
 
-        while(true){
-            //posortuj wg
-            //this.problem.getChromosomes().sort();
+        while (true) {
 
             //ewaluacja
             setProblemChromosomes(this.evalStrategy.evaluateChromosomes(getProblemChromosomes()));
 
-            if(!this.stopStrategy.isAlgorithmWorking()){
+            if (!this.stopStrategy.isAlgorithmWorking()) {
                 break;
             }
 

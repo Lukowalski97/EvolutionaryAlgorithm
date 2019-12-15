@@ -12,25 +12,25 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 public class FloatCrossStrategyTest {
-    FloatCrossStrategy cross = new FloatCrossStrategy(3);
-    List<Chromosome> list;
-    List<Gene> genes1;
-    List<Gene> genes2;
+    ICrossStrategy<FloatGene> cross = new FloatCrossStrategy(3);
+    List<Chromosome<FloatGene>> list;
+    List<FloatGene> genes1;
+    List<FloatGene> genes2;
 
     @Before
     public void init() {
-        Gene gene1 = new FloatGene(1);
-        genes1 = new ArrayList<Gene>();
+        FloatGene gene1 = new FloatGene(1);
+        genes1 = new ArrayList<>();
         genes1.add(gene1);
 
-        Gene gene2 = new FloatGene(5);
-        genes2 = new ArrayList<Gene>();
+        FloatGene gene2 = new FloatGene(5);
+        genes2 = new ArrayList<>();
         genes2.add(gene2);
 
-        FloatChromosome chromosome1 = new FloatChromosome(genes1);
-        FloatChromosome chromosome2 = new FloatChromosome(genes2);
+        Chromosome<FloatGene> chromosome1 = new FloatChromosome(genes1);
+        Chromosome<FloatGene> chromosome2 = new FloatChromosome(genes2);
 
-        list = new ArrayList<Chromosome>();
+        list = new ArrayList<>();
         list.add(chromosome1);
         list.add(chromosome2);
     }

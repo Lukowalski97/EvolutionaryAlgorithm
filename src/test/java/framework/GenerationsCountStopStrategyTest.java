@@ -1,5 +1,6 @@
 package framework;
 
+import framework.stopstrategy.GenerationsCountStopStrategy;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

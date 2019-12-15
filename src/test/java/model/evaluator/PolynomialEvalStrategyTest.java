@@ -12,15 +12,15 @@ import static org.junit.Assert.*;
 public class PolynomialEvalStrategyTest {
     PolynomialProblem problem;
     PolynomialProblem problemMin;
-    PolynomialEvalStrategy strategy;
-    PolynomialEvalStrategy strategyMin;
+    IEvalStrategy<FloatGene> strategy;
+    IEvalStrategy<FloatGene> strategyMin;
     float[] polynomial = new float[]{1,2,3};
-    List<Chromosome> list;
-    List<Chromosome> listMin;
-    List<Gene> genes1;
-    List<Gene> genes2;
-    List<Gene> genesMin1;
-    List<Gene> genesMin2;
+    List<Chromosome<FloatGene>> list;
+    List<Chromosome<FloatGene>> listMin;
+    List<FloatGene> genes1;
+    List<FloatGene> genes2;
+    List<FloatGene> genesMin1;
+    List<FloatGene> genesMin2;
 
     @Before
     public void init(){
@@ -29,20 +29,20 @@ public class PolynomialEvalStrategyTest {
         strategy = new PolynomialEvalStrategy(problem);
         strategyMin = new PolynomialEvalStrategy(problemMin);
 
-        Gene gene1 = new FloatGene(-5);
-        genes1 = new ArrayList<Gene>();
+        FloatGene gene1 = new FloatGene(-5);
+        genes1 = new ArrayList<>();
         genes1.add(gene1);
 
-        Gene gene2 = new FloatGene(5);
-        genes2 = new ArrayList<Gene>();
+        FloatGene gene2 = new FloatGene(5);
+        genes2 = new ArrayList<>();
         genes2.add(gene2);
 
         Gene geneMin1 = new FloatGene(3);
-        genesMin1 = new ArrayList<Gene>();
+        genesMin1 = new ArrayList<>();
         genesMin1.add(gene1);
 
         Gene geneMin2 = new FloatGene(7);
-        genesMin2 = new ArrayList<Gene>();
+        genesMin2 = new ArrayList<>();
         genesMin2.add(gene2);
 
         FloatChromosome chromosome1 = new FloatChromosome(genes1);
@@ -51,11 +51,11 @@ public class PolynomialEvalStrategyTest {
         FloatChromosome chromosomeMin1 = new FloatChromosome(genesMin1);
         FloatChromosome chromosomeMin2 = new FloatChromosome(genesMin2);
 
-        listMin = new ArrayList<Chromosome>();
+        listMin = new ArrayList<>();
         listMin.add(chromosomeMin1);
         listMin.add(chromosomeMin2);
 
-        list = new ArrayList<Chromosome>();
+        list = new ArrayList<>();
         list.add(chromosome1);
         list.add(chromosome2);
     }

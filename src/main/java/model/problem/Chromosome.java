@@ -3,35 +3,47 @@ package model.problem;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
-public abstract class Chromosome implements Comparable<Chromosome>{
+public abstract class Chromosome <T extends Gene> implements Comparable<Chromosome>{
 
 
     private float chromosomeFitnessValue;
 
-     List<Gene> genes;
+     List<T> genes;
 
-
-    public int compareTo(Chromosome chr){
+    public int compareTo(Chromosome chr) {
         return (int)this.chromosomeFitnessValue - (int)chr.chromosomeFitnessValue;
     }
 
-    public Chromosome(){
-        this.genes = new ArrayList<Gene>();
+    public Chromosome(List<T> genes){
+        this.genes=genes;
+    }
+
+    public Chromosome() {
+        this.genes = new ArrayList<T>();
     }
 
     @Override
-    public String toString() {
-        return "Chromosome{" +
-                "genes=" + genes +
-                '}';
+    public String toString(){
+        if(genes.isEmpty()){
+            return "[]";
+        }
+        StringBuilder sb =new StringBuilder();
+        sb.append("[");
+        for(Gene gene : genes){
+            sb.append(gene.toString());
+            sb.append("|");
+        }
+        sb.setCharAt(sb.length()-1,']');
+        return sb.toString();
     }
 
-    public List<Gene> getGenes() {
+    public List<T> getGenes() {
         return genes;
     }
 
-    public void setGenes(List<Gene> genes) {
+    public void setGenes(List<T> genes) {
         this.genes = genes;
     }
 
@@ -43,5 +55,16 @@ public abstract class Chromosome implements Comparable<Chromosome>{
         this.chromosomeFitnessValue = chromosomeFitnessValue;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Chromosome<?> that = (Chromosome<?>) o;
+        return Objects.equals(getGenes(), that.getGenes());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getGenes());
+    }
 }

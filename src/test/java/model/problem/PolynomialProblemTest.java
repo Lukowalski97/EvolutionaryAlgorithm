@@ -27,10 +27,10 @@ public class PolynomialProblemTest {
 
     @Test
     public void setAndGetChromosomes() {
-        List<Chromosome> list = new ArrayList<Chromosome>();
-        List<Gene> genes1;
-        Gene gene1 = new FloatGene(1);
-        genes1 = new ArrayList<Gene>();
+        List<Chromosome<FloatGene>> list = new ArrayList<>();
+        List<FloatGene> genes1;
+        FloatGene gene1 = new FloatGene(1);
+        genes1 = new ArrayList<>();
         genes1.add(gene1);
 
         FloatChromosome chromosome1 = new FloatChromosome(genes1);

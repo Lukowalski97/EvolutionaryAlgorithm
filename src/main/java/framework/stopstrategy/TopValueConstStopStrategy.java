@@ -1,4 +1,4 @@
-package framework;
+package framework.stopstrategy;
 
 public class TopValueConstStopStrategy implements IStopStrategy {
 

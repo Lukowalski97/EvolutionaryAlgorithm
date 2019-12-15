@@ -1,5 +1,6 @@
 package framework;
 
+import framework.stopstrategy.TimeElapsedStopStrategy;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

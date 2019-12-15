@@ -1,17 +1,15 @@
 package framework;
 
+import framework.stopstrategy.GenerationsCountStopStrategy;
+import framework.stopstrategy.IStopStrategy;
 import model.crossbreeder.FloatCrossStrategy;
 import model.evaluator.PolynomialEvalStrategy;
 import model.initializer.FloatInitStrategy;
 import model.mutator.FloatMutateStrategy;
-import model.problem.Chromosome;
-import model.problem.IProblem;
 import model.problem.PolynomialProblem;
 import model.selector.SelectTopNStrategy;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.*;
 

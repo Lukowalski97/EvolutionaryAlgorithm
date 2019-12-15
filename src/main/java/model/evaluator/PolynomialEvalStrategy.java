@@ -8,7 +8,7 @@ import model.problem.PolynomialProblem;
 import java.util.List;
 
 
-public class PolynomialEvalStrategy implements IEvalStrategy {
+public class PolynomialEvalStrategy implements IEvalStrategy<FloatGene> {
 
     PolynomialProblem problem;
 
@@ -16,7 +16,7 @@ public class PolynomialEvalStrategy implements IEvalStrategy {
         this.problem = problem;
     }
 
-    public List<Chromosome> evaluateChromosomes(List<Chromosome> chromosomes) {
+    public List<Chromosome<FloatGene>> evaluateChromosomes(List<Chromosome<FloatGene>> chromosomes) {
         for (Chromosome chromosome : chromosomes) {
             chromosome.setChromosomeFitnessValue(evaluateFitnessValue((FloatChromosome) chromosome));
         }
@@ -25,9 +25,9 @@ public class PolynomialEvalStrategy implements IEvalStrategy {
 
     private float evaluateFitnessValue(FloatChromosome chromosome) {
         if (problem.isSearchingForMax()) {
-            return polynomialValue(((FloatGene) chromosome.getGenes().get(0)).getValue(), problem.getPolynomial());
+            return polynomialValue((chromosome.getGenes().get(0)).getValue(), problem.getPolynomial());
         } else {
-            return -polynomialValue(((FloatGene) chromosome.getGenes().get(0)).getValue(), problem.getPolynomial());
+            return -polynomialValue((chromosome.getGenes().get(0)).getValue(), problem.getPolynomial());
         }
     }
 

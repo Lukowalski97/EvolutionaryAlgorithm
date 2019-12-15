@@ -1,5 +1,7 @@
 package model.problem;
 
+import java.util.Objects;
+
 public class FloatGene extends Gene {
 
     private float value;
@@ -18,11 +20,19 @@ public class FloatGene extends Gene {
 
     @Override
     public String toString() {
-        return "FloatGene{" +
-                "value=" + value +
-                '}';
-
+        return "("+value+")";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FloatGene floatGene = (FloatGene) o;
+        return Float.compare(floatGene.getValue(), getValue()) == 0;
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue());
+    }
 }

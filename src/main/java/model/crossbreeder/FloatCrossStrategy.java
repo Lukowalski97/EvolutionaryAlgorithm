@@ -5,18 +5,18 @@ import model.problem.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FloatCrossStrategy implements  ICrossStrategy {
+public class FloatCrossStrategy implements  ICrossStrategy<FloatGene> {
 
-    int chromosomesListTargetSize;
+    private int chromosomesListTargetSize;
 
     public FloatCrossStrategy(int chromosomesListTargetSize){
         this.chromosomesListTargetSize=chromosomesListTargetSize;
     }
 
-    public List<Chromosome> crossChromosomes(List<Chromosome> chromosomes) {
+    public List<Chromosome<FloatGene>> crossChromosomes(List<Chromosome<FloatGene>> chromosomes) {
 
         int i=0;
-        while(chromosomes.size()!= chromosomesListTargetSize && i<chromosomes.size()){
+        while(chromosomes.size()!= chromosomesListTargetSize && i+1<chromosomes.size()){
             chromosomes.add(crossMeanValue(chromosomes.get(i++), chromosomes.get(i++)));
         }
 
@@ -24,10 +24,10 @@ public class FloatCrossStrategy implements  ICrossStrategy {
 
     }
 
-    private FloatChromosome crossMeanValue(Chromosome firstChromosome, Chromosome secondChromosome){
-        List<Gene> tmp = new ArrayList<Gene>();
-        tmp.add(crossMeanValue ( (FloatGene)(firstChromosome.getGenes().get(0))
-                , (FloatGene)secondChromosome.getGenes().get(0)));
+    private Chromosome<FloatGene> crossMeanValue(Chromosome<FloatGene> firstChromosome, Chromosome<FloatGene> secondChromosome){
+        List<FloatGene> tmp = new ArrayList<>();
+        tmp.add(crossMeanValue ( (firstChromosome.getGenes().get(0))
+                , secondChromosome.getGenes().get(0)));
         return new FloatChromosome(tmp);
     }
 
