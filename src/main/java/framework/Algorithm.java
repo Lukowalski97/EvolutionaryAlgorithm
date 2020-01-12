@@ -135,8 +135,7 @@ public class Algorithm {
 
             //ewaluacja
             setProblemChromosomes(this.evalStrategy.evaluateChromosomes(getProblemChromosomes()));
-            Chromosome<City> best = Collections.min(getProblemChromosomes());
-            System.out.println(best.getChromosomeFitnessValue());
+
             if (!this.stopStrategy.isAlgorithmWorking()) {
                 break;
             }
