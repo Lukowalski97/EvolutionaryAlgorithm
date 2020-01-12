@@ -16,4 +16,11 @@ public class SelectTopNStrategy implements ISelectStrategy {
     public List<Chromosome> selectPersistentChromosomes(List<Chromosome> chromosomes) {
         return chromosomes.stream().sorted().limit(n).collect(Collectors.toList());
     }
+
+
+    public List<Chromosome> selectChromosomesWithBiggestFitness(List<Chromosome> chromosomes){
+        Collections.sort(chromosomes);
+        Collections.reverse(chromosomes);
+        return chromosomes.stream().limit(n).collect(Collectors.toList());
+    }
 }

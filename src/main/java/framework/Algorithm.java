@@ -5,10 +5,7 @@ import model.crossbreeder.ICrossStrategy;
 import model.evaluator.IEvalStrategy;
 import model.initializer.IInitStrategy;
 import model.mutator.IMutateStrategy;
-import model.problem.Chromosome;
-import model.problem.City;
-import model.problem.Gene;
-import model.problem.IProblem;
+import model.problem.*;
 import model.selector.ISelectStrategy;
 
 import java.util.Collections;
@@ -129,8 +126,7 @@ public class Algorithm {
 
     public void run() {
         //initialize
-        setProblemChromosomes(this.initStrategy.initChromosomes(10, 1));
-
+        setProblemChromosomes(this.initStrategy.initChromosomes(100, 1));
         while (true) {
 
             //ewaluacja
@@ -141,14 +137,14 @@ public class Algorithm {
             }
 
             //selekcja
-            setProblemChromosomes(selectStrategy.selectPersistentChromosomes(getProblemChromosomes()));
+            setProblemChromosomes(selectStrategy.selectChromosomesWithBiggestFitness(getProblemChromosomes()));
 
             //krzyzowanie
             setProblemChromosomes(crossStrategy.crossChromosomes(getProblemChromosomes()));
 
             //mutacja
-
             setProblemChromosomes(mutateStrategy.mutateChromosomes(getProblemChromosomes()));
         }
     }
+
 }
