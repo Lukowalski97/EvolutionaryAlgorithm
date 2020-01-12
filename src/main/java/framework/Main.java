@@ -3,18 +3,21 @@ package framework;
 import framework.stopstrategy.GenerationsCountStopStrategy;
 import framework.stopstrategy.IStopStrategy;
 import model.crossbreeder.AntCrossStrategy;
+import model.crossbreeder.FloatCrossStrategy;
 import model.crossbreeder.ICrossStrategy;
+import model.crossbreeder.TspCrossStrategy;
 import model.evaluator.AntEvalStrategy;
 import model.evaluator.IEvalStrategy;
 import model.AntLogic.AntBoard;
+import model.evaluator.PolynomialEvalStrategy;
+import model.evaluator.TspEvalStrategy;
 import model.initializer.AntInitStrategy;
 import model.initializer.IInitStrategy;
+import model.initializer.TspInitStrategy;
 import model.mutator.AntMutateStrategy;
 import model.mutator.IMutateStrategy;
-import model.problem.AntGene;
-import model.problem.AntProblem;
-import model.problem.Chromosome;
-import model.problem.City;
+import model.mutator.TspMutateStrategy;
+import model.problem.*;
 import model.selector.SelectTopNStrategy;
 
 import java.util.ArrayList;
@@ -23,70 +26,76 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<City> destinationCities = new ArrayList<>();
 
-/*      float[] polynomial = new float[]{1,2,3};
+        final boolean AREWETESTINGTSP = false;
+        if(AREWETESTINGTSP){
+            ArrayList<City> destinationCities = new ArrayList<>();
 
-
-        TspProblem problem = new TspProblem(destinationCities);
-        IInitStrategy<City> initStrategy = new TspInitStrategy(problem);
-        IEvalStrategy<City> evalStrategy = new TspEvalStrategy();
-        ICrossStrategy<City> crossStrategy = new TspCrossStrategy();
-        IMutateStrategy<City> mutateStrategy = new TspMutateStrategy(0.015f);
+            for (int i = 0; i < 20; i++) destinationCities.add(new City());
+            System.out.println(destinationCities);
+            IStopStrategy stopStrategy = new GenerationsCountStopStrategy(1000);
 
 
-       Algorithm  algorithm = new Algorithm.AlgorithmBuilder<City>(stopStrategy,problem).
-                initStrategy(initStrategy)
-                .crossStrategy(crossStrategy)
-                .mutateStrategy(mutateStrategy)
-                .evalStrategy(evalStrategy)
-                .selectStrategy(new SelectTopNStrategy(10))
-                .name("TSP").build();
+            TspProblem problem = new TspProblem(destinationCities);
+            IInitStrategy<City> initStrategy = new TspInitStrategy(problem);
+            IEvalStrategy<City> evalStrategy = new TspEvalStrategy();
+            ICrossStrategy<City> crossStrategy = new TspCrossStrategy();
 
-        algorithm.run();
-
-<<<<<<< HEAD
-        System.out.println(algorithm.getProblemChromosomes());*/
-
-        AntBoard board = new AntBoard(10, 10);
-        System.out.println(board.toString());
-
-        IStopStrategy stopStrategy = new GenerationsCountStopStrategy(2000);
-        IInitStrategy<AntGene> initStrategy = new AntInitStrategy(board);
-        AntProblem problem = new AntProblem();
-        IEvalStrategy<AntGene> evalStrategy = new AntEvalStrategy(problem);
-        ICrossStrategy<AntGene> crossStrategy = new AntCrossStrategy(board);
-        IMutateStrategy<AntGene> mutateStrategy = new AntMutateStrategy(board);
-
-        Algorithm algorithm = new Algorithm.AlgorithmBuilder<AntGene>(stopStrategy, problem).
-                initStrategy(initStrategy)
-                .crossStrategy(crossStrategy)
-                .mutateStrategy(mutateStrategy)
-                .evalStrategy(evalStrategy)
-                .selectStrategy(new SelectTopNStrategy(10))
-                .name("Ant Helper").build();
-        algorithm.run();
+            IMutateStrategy<City> mutateStrategy = new TspMutateStrategy(0.015f);
 
 
-        List<Chromosome<AntGene>> chrom = problem.getChromosomes();
-        Collections.sort(chrom);
-        Collections.reverse(chrom);
-        System.out.println(board.ChromosomePathAndResultToString(chrom.get(0)));
+            Algorithm<City>  algorithm = new Algorithm.AlgorithmBuilder<City>(stopStrategy,problem).
+                    initStrategy(initStrategy)
+                    .crossStrategy(crossStrategy)
+                    .mutateStrategy(mutateStrategy)
+                    .evalStrategy(evalStrategy)
+                    .selectStrategy(new SelectTopNStrategy(10))
+                    .name("Polynomial").build();
+
+
+            algorithm.run();
+
+            Chromosome<City> best = Collections.min(algorithm.getProblemChromosomes());
+            System.out.println(best.getChromosomeFitnessValue());
+            System.out.println(best);
+        }else{
+            AntBoard board = new AntBoard(10, 10);
+            System.out.println(board.toString());
+
+            IStopStrategy stopStrategy = new GenerationsCountStopStrategy(2000);
+            IInitStrategy<AntGene> initStrategy = new AntInitStrategy(board);
+            AntProblem problem = new AntProblem();
+            IEvalStrategy<AntGene> evalStrategy = new AntEvalStrategy(problem);
+            ICrossStrategy<AntGene> crossStrategy = new AntCrossStrategy(board);
+            IMutateStrategy<AntGene> mutateStrategy = new AntMutateStrategy(board);
+
+            Algorithm algorithm = new Algorithm.AlgorithmBuilder<AntGene>(stopStrategy, problem).
+                    initStrategy(initStrategy)
+                    .crossStrategy(crossStrategy)
+                    .mutateStrategy(mutateStrategy)
+                    .evalStrategy(evalStrategy)
+                    .selectStrategy(new SelectTopNStrategy(10))
+                    .name("Ant Helper").build();
+            algorithm.run();
+
+
+            List<Chromosome<AntGene>> chrom = problem.getChromosomes();
+            Collections.sort(chrom);
+            Collections.reverse(chrom);
+            System.out.println(board.ChromosomePathAndResultToString(chrom.get(0)));
+
+            problem.setChromosomes(initStrategy.initChromosomes(10, 1));
+            List<Chromosome<AntGene>> chromosomeList = problem.getChromosomes();
+            for(int i = 0; i<chromosomeList.size(); i++){
+                Chromosome<AntGene> antChromosome = chromosomeList.get(i);
+                for(int j = 0; j < antChromosome.getGenes().size(); j++)
+                    System.out.println(antChromosome.getGenes().get(j).getAntMove());
+
+            }
+        }
 
 
 
-
-
-
-
-/*        problem.setChromosomes(initStrategy.initChromosomes(10, 1));
-        List<Chromosome<AntGene>> chromosomeList = problem.getChromosomes();
-        for(int i = 0; i<chromosomeList.size(); i++){
-            Chromosome<AntGene> antChromosome = chromosomeList.get(i);
-            for(int j = 0; j < antChromosome.getGenes().size(); j++)
-                System.out.println(antChromosome.getGenes().get(j).getAntMove());
-
-        }*/
 
 
     }

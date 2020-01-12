@@ -1,12 +1,13 @@
 package model.selector;
 
 import model.problem.Chromosome;
+import model.problem.Gene;
 
 import java.util.List;
 
-public interface ISelectStrategy {
+public interface ISelectStrategy <T extends Gene> {
 
-    List<Chromosome> selectPersistentChromosomes(List<Chromosome> chromosomes);
+    List<Chromosome<T>> selectPersistentChromosomes(List<Chromosome<T>> chromosomes);
 
-    List<Chromosome> selectChromosomesWithBiggestFitness(List<Chromosome> chromosomes);
+    List<Chromosome<T>> selectChromosomesWithBiggestFitness(List<Chromosome<T>> chromosomes);
 }
