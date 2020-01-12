@@ -19,4 +19,18 @@ public class Tour extends Chromosome<City> {
     public City getCity(int i) {
         return this.getGenes().get(i);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for(Gene gene : genes){
+            sb.append(gene.toString());
+            sb.append(", ");
+        }
+        sb.setCharAt(sb.length()-2,']');
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
+
+    }
 }

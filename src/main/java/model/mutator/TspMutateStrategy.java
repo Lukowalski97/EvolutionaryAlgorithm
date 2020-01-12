@@ -2,9 +2,7 @@ package model.mutator;
 
 import model.problem.Chromosome;
 import model.problem.City;
-import model.problem.FloatGene;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TspMutateStrategy implements IMutateStrategy<City> {
@@ -18,9 +16,9 @@ public class TspMutateStrategy implements IMutateStrategy<City> {
     public List<Chromosome<City>> mutateChromosomes(List<Chromosome<City>> chromosomes) {
         for (Chromosome<City> chromosome : chromosomes) {
             List<City> cities = chromosome.getGenes();
-            for(int tourPos1=0; tourPos1 < cities.size(); tourPos1++){
-                if(Math.random() < mutationChance){
-                    int tourPos2 = (int) (cities.size()* Math.random());
+            for (int tourPos1 = 0; tourPos1 < cities.size(); tourPos1++) {
+                if (Math.random() < mutationChance) {
+                    int tourPos2 = (int) (cities.size() * Math.random());
 
                     City city1 = cities.get(tourPos1);
                     City city2 = cities.get(tourPos2);

@@ -44,6 +44,4 @@ public class FloatInitStrategy implements IInitStrategy<FloatGene> {
         }
         return outp;
     }
-
-
 }

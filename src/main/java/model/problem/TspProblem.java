@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TspProblem implements IProblem<City> {
-    private static ArrayList<City> destinationCities;
+    private static ArrayList<City> cities;
     private List<Chromosome<City>> chromosomes;
 
-    public TspProblem(ArrayList<City> destinationCities) {
-        this.destinationCities = destinationCities;
+    public TspProblem(ArrayList<City> cities) {
+        this.cities = cities;
     }
 
     @Override
@@ -22,7 +22,8 @@ public class TspProblem implements IProblem<City> {
     }
 
 
-    public static ArrayList<City> getCities(){
-        return destinationCities;
+    public ArrayList<City> getCities(){
+        return cities;
     }
+
 }

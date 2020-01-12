@@ -56,21 +56,20 @@ public class ChromosomeTest {
 
     @Test
     public void testGettersAndSettersFitnessValue(){
-        Chromosome<LabelGene> chrom = new LabelChromosome();
-        chrom.setChromosomeFitnessValue(15);
-        assertEquals(chrom.getChromosomeFitnessValue(),15,0.001);
     }
 
+    @Test
     public void testEqualsAndHashCode(){
-        Chromosome<LabelGene> chrom1 = new LabelChromosome();
-        Chromosome<LabelGene> chrom2 = new LabelChromosome();
-        Chromosome<LabelGene> chromDiff = new LabelChromosome();
-        chrom1.getGenes().add(new LabelGene(1));
-        chrom2.getGenes().add(new LabelGene(1));
-        chromDiff.getGenes().add(new LabelGene(17));
+        Chromosome<City> chrom1 = new Tour();
+        Chromosome<City> chrom2 = new Tour();
+        Chromosome<City> chromDiff = new Tour();
+        chrom1.getGenes().add(new City(5, 3));
+        chrom2.getGenes().add(new City(5, 3));
+        chromDiff.getGenes().add(new City(2, 2));
 
-        assertEquals(chrom1,chrom2);
-        assertNotEquals(chrom1,chromDiff);
+        assertTrue(chrom1.equals(chrom2));
+        assertFalse(chrom1.equals(chromDiff));
+        assertFalse(chrom2.equals(chromDiff));
         assertEquals(chrom1.hashCode(),chrom2.hashCode());
         assertNotEquals(chrom1.hashCode(),chromDiff.hashCode());
     }

@@ -1,5 +1,7 @@
 package model.problem;
 
+import java.util.Objects;
+
 public class City extends Gene{
     int x;
     int y;
@@ -33,5 +35,19 @@ public class City extends Gene{
     @Override
     public String toString(){
         return "(" + getX()+", "+getY() + ")";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return x == city.x &&
+                y == city.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

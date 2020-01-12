@@ -6,10 +6,12 @@ import model.evaluator.IEvalStrategy;
 import model.initializer.IInitStrategy;
 import model.mutator.IMutateStrategy;
 import model.problem.Chromosome;
+import model.problem.City;
 import model.problem.Gene;
 import model.problem.IProblem;
 import model.selector.ISelectStrategy;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Algorithm {
@@ -133,7 +135,8 @@ public class Algorithm {
 
             //ewaluacja
             setProblemChromosomes(this.evalStrategy.evaluateChromosomes(getProblemChromosomes()));
-
+            Chromosome<City> best = Collections.min(getProblemChromosomes());
+            System.out.println(best.getChromosomeFitnessValue());
             if (!this.stopStrategy.isAlgorithmWorking()) {
                 break;
             }

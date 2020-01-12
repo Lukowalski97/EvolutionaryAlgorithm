@@ -37,7 +37,6 @@ public class PolynomialProblemTest {
         list.add(chromosome1);
 
         problem.setChromosomes(list);
-        //System.out.println(problem.getChromosomes().get(0).getGenes().get(0));
         FloatGene gene = (FloatGene) problem.getChromosomes().get(0).getGenes().get(0);
         assertEquals(1, gene.getValue(), 0.1);
     }

@@ -26,9 +26,6 @@ public abstract class Chromosome <T extends Gene> implements Comparable<Chromoso
 
     @Override
     public String toString(){
-        if(genes.isEmpty()){
-            return "[]";
-        }
         StringBuilder sb =new StringBuilder();
         sb.append("[");
         for(Gene gene : genes){

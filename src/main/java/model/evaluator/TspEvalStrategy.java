@@ -1,41 +1,33 @@
 package model.evaluator;
 
-import model.problem.Chromosome;
-import model.problem.LabelChromosome;
-import model.problem.LabelGene;
-import model.problem.TravellingSalesmanProblem;
+import model.problem.*;
 
+import java.util.Collections;
 import java.util.List;
 
-public class TspEvalStrategy implements  IEvalStrategy<LabelGene> {
-
-    private TravellingSalesmanProblem problem;
-
-    public TspEvalStrategy(TravellingSalesmanProblem problem){
-        this.problem=problem;
-    }
-
+public class TspEvalStrategy implements  IEvalStrategy<City> {
     @Override
-    public List<Chromosome<LabelGene>> evaluateChromosomes(List<Chromosome<LabelGene>> chromosomes) {
+    public List<Chromosome<City>> evaluateChromosomes(List<Chromosome<City>> chromosomes) {
         for(Chromosome chromosome:chromosomes){
-            chromosome.setChromosomeFitnessValue(evaluateFitnessValue((LabelChromosome) chromosome));
+            chromosome.setChromosomeFitnessValue(evaluateFitnessValue((Tour) chromosome));
         }
         return chromosomes;
     }
 
-    private float evaluateFitnessValue(LabelChromosome chromosome){
-        float sum =0;
-        int i;
-        for( i=0;i< chromosome.getGenes().size()-1;i++){
-            sum+=problem.getDistancesMatrix()
-                    [(chromosome.getGenes().get(i)).getNumber()]
-                    [(chromosome.getGenes().get(i+1)).getNumber()];
+    public float evaluateFitnessValue(Tour chromosome){
+        int tourDistance = 0;
+        for (int cityIndex=0; cityIndex < chromosome.getGenes().size(); cityIndex++) {
+            City fromCity = chromosome.getGenes().get(cityIndex);
+            City destinationCity;
+            if(cityIndex+1 < chromosome.getGenes().size()){
+                destinationCity = chromosome.getGenes().get(cityIndex+1);
+            }
+            else{
+                destinationCity = chromosome.getGenes().get((0));
+            }
+            tourDistance += fromCity.distanceTo(destinationCity);
         }
 
-        sum+=problem.getDistancesMatrix()
-                [(chromosome.getGenes().get(i)).getNumber()]
-                [(chromosome.getGenes().get(0)).getNumber()];
-
-        return -sum;
+        return tourDistance;
     }
 }
