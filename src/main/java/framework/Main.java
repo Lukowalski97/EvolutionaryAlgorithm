@@ -4,7 +4,6 @@ import framework.stopstrategy.GenerationsCountStopStrategy;
 import framework.stopstrategy.IStopStrategy;
 import model.crossbreeder.AntCrossStrategy;
 import model.crossbreeder.ICrossStrategy;
-<<<<<<< HEAD
 import model.evaluator.AntEvalStrategy;
 import model.evaluator.IEvalStrategy;
 import model.AntLogic.AntBoard;
@@ -15,42 +14,18 @@ import model.mutator.IMutateStrategy;
 import model.problem.AntGene;
 import model.problem.AntProblem;
 import model.problem.Chromosome;
-import model.selector.SelectTopNStrategy;
-
-import java.util.Collections;
-import java.util.List;
-=======
-import model.crossbreeder.TspCrossStrategy;
-import model.evaluator.IEvalStrategy;
-import model.evaluator.PolynomialEvalStrategy;
-import model.evaluator.TspEvalStrategy;
-import model.initializer.FloatInitStrategy;
-import model.initializer.IInitStrategy;
-import model.initializer.TspInitStrategy;
-import model.mutator.FloatMutateStrategy;
-import model.mutator.IMutateStrategy;
-import model.mutator.TspMutateStrategy;
-import model.problem.*;
+import model.problem.City;
 import model.selector.SelectTopNStrategy;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.stream.Collectors;
->>>>>>> 72bb8200065d60553dc0443894004404ecc4af6d
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         ArrayList<City> destinationCities = new ArrayList<>();
 
-<<<<<<< HEAD
 /*      float[] polynomial = new float[]{1,2,3};
-=======
-        for (int i = 0; i < 20; i++) destinationCities.add(new City());
-        System.out.println(destinationCities);
-        IStopStrategy stopStrategy = new GenerationsCountStopStrategy(1000);
->>>>>>> 72bb8200065d60553dc0443894004404ecc4af6d
 
 
         TspProblem problem = new TspProblem(destinationCities);
@@ -114,10 +89,5 @@ public class Main {
         }*/
 
 
-=======
-        Chromosome<City> best = Collections.min(algorithm.getProblemChromosomes());
-        System.out.println(best.getChromosomeFitnessValue());
-        System.out.println(best);
->>>>>>> 72bb8200065d60553dc0443894004404ecc4af6d
     }
 }
