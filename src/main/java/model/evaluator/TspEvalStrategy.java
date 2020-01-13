@@ -30,4 +30,9 @@ public class TspEvalStrategy implements  IEvalStrategy<City> {
 
         return tourDistance;
     }
+
+    @Override
+    public List<Chromosome<City>> executeOperation(List<Chromosome<City>> list) {
+        return evaluateChromosomes(list);
+    }
 }

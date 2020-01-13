@@ -31,4 +31,9 @@ public class AntEvalStrategy implements IEvalStrategy<AntGene> {
         return (float) fitnessValue;
 
     }
+
+    @Override
+    public List<Chromosome<AntGene>> executeOperation(List<Chromosome<AntGene>> list) {
+        return evaluateChromosomes(list);
+    }
 }

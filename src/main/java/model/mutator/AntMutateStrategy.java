@@ -120,4 +120,9 @@ public class AntMutateStrategy implements IMutateStrategy<AntGene>{
     public void setMutationChance(float mutationChance) {
 
     }
+
+    @Override
+    public List<Chromosome<AntGene>> executeOperation(List<Chromosome<AntGene>> list) {
+        return mutateChromosomes(list);
+    }
 }

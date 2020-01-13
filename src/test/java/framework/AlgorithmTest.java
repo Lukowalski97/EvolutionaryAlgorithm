@@ -26,9 +26,6 @@ public class AlgorithmTest {
 
         algorithm = new Algorithm.AlgorithmBuilder(stopStrategy, problem)
                 .initStrategy(new FloatInitStrategy())
-                .crossStrategy(new FloatCrossStrategy(2))
-                .mutateStrategy(new FloatMutateStrategy(1, 1))
-                .evalStrategy(new PolynomialEvalStrategy(problem))
                 .selectStrategy(new SelectTopNStrategy(2))
                 .name("Polynomial").build();
 
@@ -53,24 +50,10 @@ public class AlgorithmTest {
         assertNotNull(algorithm.getProblem());
     }
 
-    @Test
-    public void getCrossStrategy() {
-        assertNotNull(algorithm.getCrossStrategy());
-    }
 
     @Test
     public void getInitStrategy() {
         assertNotNull(algorithm.getInitStrategy());
-    }
-
-    @Test
-    public void getMutateStrategy() {
-        assertNotNull(algorithm.getMutateStrategy());
-    }
-
-    @Test
-    public void getEvalStrategy() {
-        assertNotNull(algorithm.getEvalStrategy());
     }
 
     @Test

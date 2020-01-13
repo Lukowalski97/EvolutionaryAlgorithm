@@ -1,5 +1,6 @@
 package model.selector;
 
+import model.IOperationStrategy;
 import model.problem.Chromosome;
 import model.problem.Gene;
 

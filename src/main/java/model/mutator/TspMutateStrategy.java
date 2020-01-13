@@ -42,4 +42,9 @@ public class TspMutateStrategy implements IMutateStrategy<City> {
     public void setMutationChance(float mutationChance) {
         this.mutationChance = mutationChance;
     }
+
+    @Override
+    public List<Chromosome<City>> executeOperation(List<Chromosome<City>> list) {
+        return mutateChromosomes(list);
+    }
 }

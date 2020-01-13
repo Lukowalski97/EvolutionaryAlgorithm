@@ -41,4 +41,9 @@ public class PolynomialEvalStrategy implements IEvalStrategy<FloatGene> {
         return outp;
 
     }
+
+    @Override
+    public List<Chromosome<FloatGene>> executeOperation(List<Chromosome<FloatGene>> list) {
+        return evaluateChromosomes(list);
+    }
 }

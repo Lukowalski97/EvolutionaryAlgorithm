@@ -34,4 +34,9 @@ public class FloatCrossStrategy implements  ICrossStrategy<FloatGene> {
     private FloatGene crossMeanValue(FloatGene firstGene, FloatGene secondGene){
         return new FloatGene((firstGene.getValue() + secondGene.getValue()) /2);
     }
+
+    @Override
+    public List<Chromosome<FloatGene>> executeOperation(List<Chromosome<FloatGene>> list) {
+        return crossChromosomes(list);
+    }
 }

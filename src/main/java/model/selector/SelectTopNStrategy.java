@@ -24,4 +24,5 @@ public class SelectTopNStrategy implements ISelectStrategy<Gene> {
         Collections.reverse(chromosomes);
         return chromosomes.stream().limit(n).collect(Collectors.toList());
     }
+
 }

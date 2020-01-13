@@ -92,4 +92,8 @@ public class AntCrossStrategy implements ICrossStrategy<AntGene> {
         return connectingGene;
     }
 
+    @Override
+    public List<Chromosome<AntGene>> executeOperation(List<Chromosome<AntGene>> list) {
+        return crossChromosomes(list);
+    }
 }

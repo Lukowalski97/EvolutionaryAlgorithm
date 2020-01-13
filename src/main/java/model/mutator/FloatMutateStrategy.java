@@ -40,4 +40,9 @@ public class FloatMutateStrategy implements IMutateStrategy<FloatGene> {
     public void setMutationChance(float mutationChance) {
         this.mutationChance = mutationChance;
     }
+
+    @Override
+    public List<Chromosome<FloatGene>> executeOperation(List<Chromosome<FloatGene>> list) {
+        return mutateChromosomes(list);
+    }
 }

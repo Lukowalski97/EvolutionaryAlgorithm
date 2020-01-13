@@ -57,4 +57,9 @@ public class TspCrossStrategy implements ICrossStrategy<City> {
         child.setGenes(cities);
         return child;
     }
+
+    @Override
+    public List<Chromosome<City>> executeOperation(List<Chromosome<City>> list) {
+        return crossChromosomes(list);
+    }
 }
