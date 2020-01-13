@@ -29,6 +29,7 @@ public class FloatGeneTest {
         assertEquals("(" +gene.getValue()+ ")",gene.toString() );
     }
 
+    @Test
     public void testHashAndEquals(){
         FloatGene gene1 = new FloatGene(1);
         FloatGene gene2 = new FloatGene(1);

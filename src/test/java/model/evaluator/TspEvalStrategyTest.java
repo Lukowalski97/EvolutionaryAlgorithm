@@ -1,9 +1,8 @@
 package model.evaluator;
 
 import model.problem.Chromosome;
-import model.problem.LabelChromosome;
-import model.problem.LabelGene;
-import model.problem.TravellingSalesmanProblem;
+import model.problem.City;
+import model.problem.Tour;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,42 +12,53 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class TspEvalStrategyTest {
-
-    int n;
-    float[][] distances;
-    List<Chromosome<LabelGene>> list;
-    List<Chromosome<LabelGene>> evaluatedList;
-    TravellingSalesmanProblem problem;
-    TspEvalStrategy strategy ;
+    List<Chromosome<City>> list;
+    ArrayList<City> cities1;
+    ArrayList<City> cities2;
+    TspEvalStrategy tspEvalStrategy;
+    Tour tour1;
+    Tour tour2;
 
     @Before
-    public void init() {
-        n = 5;
-        distances = new float[n][n];
+    public void setUp() throws Exception {
+        cities1 = new ArrayList<>();
+        City city = new City(100, 200);
+        cities1.add(city);
+        City city2 = new City(200, 200);
+        cities1.add(city2);
+        City city3 = new City(200, 100);
+        cities1.add(city3);
+        City city4= new City(100, 100);
+        cities1.add(city4);
+        tour1 = new Tour(cities1);
+
+        cities2 = new ArrayList<>();
+        cities2.add(city);
+        cities2.add(city3);
+        cities2.add(city2);
+        cities2.add(city4);
+        tour2 = new Tour(cities2);
+
         list = new ArrayList<>();
+        list.add(tour1);
+        list.add(tour2);
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                distances[i][j] = 2;
-            }
-        }
-        problem = new TravellingSalesmanProblem(distances);
-        strategy = new TspEvalStrategy(problem);
-
+        tspEvalStrategy = new TspEvalStrategy();
     }
 
     @Test
     public void evaluateChromosomes() {
+        List<Chromosome<City>> result = tspEvalStrategy.evaluateChromosomes(list);
 
-        Chromosome<LabelGene> chromosome = new LabelChromosome();
-        for (int i = 0; i < n; i++) {
-            chromosome.getGenes().add(new LabelGene(i));
-        }
-        list.add(chromosome);
+        assertNotNull(result);
+        assertEquals(2, result.size());
+        assertEquals(400.0f, result.get(0).getChromosomeFitnessValue(), 0.1);
+        assertEquals(482.0f, result.get(1).getChromosomeFitnessValue(), 0.1);
+    }
 
-        evaluatedList = strategy.evaluateChromosomes(list);
-
-        assertEquals(-10,list.get(0).getChromosomeFitnessValue(),0.001);
-
+    @Test
+    public void evaluateFitnessValue() {
+        assertEquals(400.0f, tspEvalStrategy.evaluateFitnessValue(tour1), 0.1);
+        assertEquals(482.0f, tspEvalStrategy.evaluateFitnessValue(tour2), 0.1);
     }
 }

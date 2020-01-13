@@ -8,6 +8,7 @@ import model.mutator.IMutateStrategy;
 import model.problem.*;
 import model.selector.ISelectStrategy;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Algorithm {
