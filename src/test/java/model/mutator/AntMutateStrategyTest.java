@@ -50,11 +50,14 @@ public class AntMutateStrategyTest {
         assertNotNull(mutator.mutateChromosomes(chrom));
     }
 
-    @Test
-    public void getMutationChance() {
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void getMutationChanceTest() {
+        mutator.setMutationChance(0.5f);
     }
 
-    @Test
-    public void setMutationChance() {
+    @Test(expected = UnsupportedOperationException.class)
+    public void setMutationChanceTest() {
+        mutator.getMutationChance();
     }
 }

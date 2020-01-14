@@ -6,6 +6,7 @@ import model.problem.AntChromosome;
 import model.problem.AntGene;
 import model.problem.AntMove;
 import model.problem.Chromosome;
+import net.bytebuddy.implementation.bytecode.Throw;
 import utils.Point;
 
 import java.util.ArrayList;
@@ -113,11 +114,12 @@ public class AntMutateStrategy implements IMutateStrategy<AntGene>{
 
     @Override
     public float getMutationChance() {
-        return 0;
+        throw new UnsupportedOperationException("getMutationChance operation is not supported");
+
     }
 
     @Override
-    public void setMutationChance(float mutationChance) {
-
+    public void setMutationChance(float mutationChance) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("setMutationChance operation is not supported");
     }
 }

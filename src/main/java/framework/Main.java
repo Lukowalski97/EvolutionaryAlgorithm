@@ -41,8 +41,8 @@ public class Main {
             IEvalStrategy<City> evalStrategy = new TspEvalStrategy();
             ICrossStrategy<City> crossStrategy = new TspCrossStrategy();
 
-            IMutateStrategy<City> mutateStrategy = new TspMutateStrategy(0.015f);
 
+            IMutateStrategy<City> mutateStrategy = new TspMutateStrategy(0.015f);
 
             Algorithm<City>  algorithm = new Algorithm.AlgorithmBuilder<City>(stopStrategy,problem).
                     initStrategy(initStrategy)
@@ -69,7 +69,7 @@ public class Main {
             ICrossStrategy<AntGene> crossStrategy = new AntCrossStrategy(board);
             IMutateStrategy<AntGene> mutateStrategy = new AntMutateStrategy(board);
 
-            Algorithm algorithm = new Algorithm.AlgorithmBuilder<AntGene>(stopStrategy, problem).
+            Algorithm<AntGene> algorithm = new Algorithm.AlgorithmBuilder<AntGene>(stopStrategy, problem).
                     initStrategy(initStrategy)
                     .crossStrategy(crossStrategy)
                     .mutateStrategy(mutateStrategy)
@@ -87,10 +87,5 @@ public class Main {
             problem.setChromosomes(initStrategy.initChromosomes(10, 1));
 
         }
-
-
-
-
-
     }
 }
