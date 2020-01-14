@@ -1,6 +1,5 @@
 package model.crossbreeder;
 
-import com.sun.javaws.IconUtil;
 import model.problem.Chromosome;
 import model.problem.City;
 import model.problem.Tour;

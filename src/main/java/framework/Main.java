@@ -59,7 +59,7 @@ public class Main {
             System.out.println(best.getChromosomeFitnessValue());
             System.out.println(best);
         }else{
-            AntBoard board = new AntBoard(10, 10);
+            AntBoard board = new AntBoard(10, 20);
             System.out.println(board.toString());
 
             IStopStrategy stopStrategy = new GenerationsCountStopStrategy(2000);
@@ -85,13 +85,7 @@ public class Main {
             System.out.println(board.ChromosomePathAndResultToString(chrom.get(0)));
 
             problem.setChromosomes(initStrategy.initChromosomes(10, 1));
-            List<Chromosome<AntGene>> chromosomeList = problem.getChromosomes();
-            for(int i = 0; i<chromosomeList.size(); i++){
-                Chromosome<AntGene> antChromosome = chromosomeList.get(i);
-                for(int j = 0; j < antChromosome.getGenes().size(); j++)
-                    System.out.println(antChromosome.getGenes().get(j).getAntMove());
 
-            }
         }
 
 
