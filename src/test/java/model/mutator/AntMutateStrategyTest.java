@@ -4,6 +4,7 @@ import model.AntLogic.AntBoard;
 import model.initializer.AntInitStrategy;
 import model.problem.AntChromosome;
 import model.problem.AntGene;
+import model.problem.AntMove;
 import model.problem.Chromosome;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,4 +61,5 @@ public class AntMutateStrategyTest {
     public void setMutationChanceTest() {
         mutator.getMutationChance();
     }
+
 }

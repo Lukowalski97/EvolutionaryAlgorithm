@@ -120,13 +120,6 @@ public class AntBoard {
                 && antGene.getAntBoardField().getLocation().getxLocation() == xLocation;
     }
 
-    private int getFieldPhermoneStrength(int xLocation, int yLocation){//this
-        if(xLocation > this.xSize || yLocation > this.ySize){
-            throw new IllegalArgumentException("Out of Ant board!");
-        }
-        return this.antBoard[xLocation][yLocation].getPheromoneStrength();
-    }
-
     private String getSimbolForMove(AntMove move){
         if(move == AntMove.RIGHT)
             return "-->";
