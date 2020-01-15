@@ -1,17 +1,25 @@
 package model.AntLogic;
+import model.initializer.AntInitStrategy;
+import model.problem.AntGene;
+import model.problem.AntGeneTest;
+import model.problem.Chromosome;
 import org.junit.Before;
 import org.junit.Test;
 import utils.Point;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class AntBoardTest {
     AntBoard board;
-    AntBoard field;
+    AntInitStrategy initor;
+
 
     @Before
     public void init(){
         board = new AntBoard( 10 ,3);
+        initor = new AntInitStrategy(board);
     }
 
     @Test
@@ -22,7 +30,9 @@ public class AntBoardTest {
 
     @Test
     public void chromosomePathAndResultToString() {
-        String resultBoard = board.toString();
+        List<Chromosome<AntGene>> chromosomes = initor.initChromosomes(10, 1);
+        Chromosome<AntGene> chromosome = chromosomes.get(0);
+        String resultBoard = board.ChromosomePathAndResultToString(chromosome);
         assertNotEquals(null, resultBoard);
 
     }
@@ -31,6 +41,11 @@ public class AntBoardTest {
     public void getField() {
         AntBoardField gotField = board.getField(0, 0);
         assertNotEquals(null, gotField);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getFieldOutOfBoard(){
+        AntBoardField outField = board.getField(10, board.getxSize() * 10);
     }
 
     @Test
