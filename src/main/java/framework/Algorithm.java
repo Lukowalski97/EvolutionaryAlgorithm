@@ -126,7 +126,7 @@ public class Algorithm {
 
     public void run() {
         //initialize
-        setProblemChromosomes(this.initStrategy.initChromosomes(100, 1));
+        setProblemChromosomes(this.initStrategy.initChromosomes(10, 1));
         while (true) {
 
             //ewaluacja
@@ -137,7 +137,7 @@ public class Algorithm {
             }
 
             //selekcja
-            setProblemChromosomes(selectStrategy.selectChromosomesWithBiggestFitness(getProblemChromosomes()));
+            setProblemChromosomes(selectStrategy.selectPersistentChromosomes(getProblemChromosomes()));
 
             //krzyzowanie
             setProblemChromosomes(crossStrategy.crossChromosomes(getProblemChromosomes()));
