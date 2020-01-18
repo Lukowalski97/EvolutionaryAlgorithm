@@ -23,6 +23,8 @@ import model.problem.*;
 import model.selector.SelectTopNStrategy;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -53,7 +55,7 @@ public class Main {
                     .mutateStrategy(mutateStrategy)
                     .evalStrategy(evalStrategy)
                     .selectStrategy(new SelectTopNStrategy(10))
-                    .name("Polynomial").build();
+                    .name("TSP").build();
 
 
             algorithm.run();
@@ -62,9 +64,10 @@ public class Main {
             System.out.println(best.getChromosomeFitnessValue());
             System.out.println(best);
 
+            Path path = Paths.get("src", "main", "python", "plot.py");
             Process process;
             try{
-                process = Runtime.getRuntime().exec(new String[]{"python", "plot.py", destinationCities.toString(), best.toString()});
+                process = Runtime.getRuntime().exec(new String[]{"python", path.toString(), destinationCities.toString(), best.toString()});
             }catch(Exception e) {
                 System.out.println("Exception Raised" + e.toString());
             }
