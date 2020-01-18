@@ -22,19 +22,20 @@ import model.mutator.TspMutateStrategy;
 import model.problem.*;
 import model.selector.SelectTopNStrategy;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        final boolean AREWETESTINGTSP = false;
+        final boolean AREWETESTINGTSP = true;
         if(AREWETESTINGTSP){
             ArrayList<City> destinationCities = new ArrayList<>();
 
             for (int i = 0; i < 20; i++) destinationCities.add(new City());
-            System.out.println(destinationCities);
+            System.out.println(destinationCities.toString());
             IStopStrategy stopStrategy = new GenerationsCountStopStrategy(1000);
 
 
@@ -60,6 +61,14 @@ public class Main {
             Chromosome<City> best = Collections.min(algorithm.getProblemChromosomes());
             System.out.println(best.getChromosomeFitnessValue());
             System.out.println(best);
+
+            Process process;
+            try{
+                process = Runtime.getRuntime().exec(new String[]{"python", "plot.py", destinationCities.toString(), best.toString()});
+            }catch(Exception e) {
+                System.out.println("Exception Raised" + e.toString());
+            }
+
         }else{
             AntBoard board = new AntBoard(10, 20);
             System.out.println(board.toString());
