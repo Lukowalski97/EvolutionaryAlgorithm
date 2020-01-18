@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import sys
-from os import path
+import os
 
 def plot(points, savename):
     x, y = zip(*points)
@@ -9,7 +9,10 @@ def plot(points, savename):
         plt.plot([points[i][0], points[(i+1)][0]], [points[i][1], points[(i+1)][1]], lw=1, c='blue')
     i = len(points) - 1
     plt.plot([points[i][0], points[0][0]], [points[i][1], points[0][1]], lw=1, c='blue')
-    plt.savefig(path.join('src', 'main', "python", savename))
+    p = os.path.join('target' , savename)
+    if not os.path.exists(os.path.dirname(p)):
+        os.makedirs(os.path.dirname(p))
+    plt.savefig(p)
     plt.show()
 
 if __name__ == "__main__":
