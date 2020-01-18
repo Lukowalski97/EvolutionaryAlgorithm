@@ -55,15 +55,6 @@ public class AntBoard {
         return rand.nextInt(FIELD_VALUE_LIMIT);
     }
 
-    public AntBoardField[][] getAntBoard() {
-        return antBoard;
-    }
-
-    public void setAntBoard(AntBoardField[][] antBoard) {
-        this.antBoard = antBoard;
-    }
-
-
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("\n");
@@ -129,13 +120,6 @@ public class AntBoard {
                 && antGene.getAntBoardField().getLocation().getxLocation() == xLocation;
     }
 
-    private int getFieldPhermoneStrength(int xLocation, int yLocation){
-        if(xLocation > this.xSize || yLocation > this.ySize){
-            throw new IllegalArgumentException("Out of Ant board!");
-        }
-        return this.antBoard[xLocation][yLocation].getPheromoneStrength();
-    }
-
     private String getSimbolForMove(AntMove move){
         if(move == AntMove.RIGHT)
             return "-->";
@@ -151,7 +135,7 @@ public class AntBoard {
         return this.antBoard[xLocation][yLocation].getFoodPoints();
     }
 
-    public AntBoardField getField(int xLocation, int yLocation){
+    public AntBoardField getField(int xLocation, int yLocation){//this
         if(xLocation > this.xSize - 1 || yLocation > this.ySize - 1){
             throw new IllegalArgumentException("Out of Ant board!");
         }
@@ -171,7 +155,7 @@ public class AntBoard {
             return false;
     }
 
-    public boolean areFieldsOnSameY(AntBoardField firstField, AntBoardField secondField){
+    public boolean areFieldsOnSameY(AntBoardField firstField, AntBoardField secondField){//this
         return firstField.getLocation().getyLocation() == secondField.getLocation().getyLocation();
     }
 }
