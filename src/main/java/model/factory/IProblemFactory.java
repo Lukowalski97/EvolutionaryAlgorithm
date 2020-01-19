@@ -8,6 +8,5 @@ import model.problem.IProblem;
 
 public interface IProblemFactory
 {
-    IProblem createProblem(IInitStrategy initStrategy, IEvalStrategy evalStrategy, ICrossStrategy crossStrategy,
-                           IMutateStrategy mutateStrategy);
+    IProblem createProblem();
 }
